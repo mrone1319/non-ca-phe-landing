@@ -1,19 +1,26 @@
 'use client';
 
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
 import ImagePlaceholder from './ImagePlaceholder';
 import { useLanguage } from '@/lib/LanguageContext';
 import { T } from '@/data/translations';
 
-const SOCIAL_PLACEHOLDERS = [
-  { id: 1, alt: { en: 'Instagram check-in', zh: 'Instagram 打卡' } },
-  { id: 2, alt: { en: 'Xiaohongshu check-in', zh: '小红书打卡' } },
-  { id: 3, alt: { en: 'Instagram check-in', zh: 'Instagram 打卡' } },
-  { id: 4, alt: { en: 'Xiaohongshu check-in', zh: '小红书打卡' } },
-  { id: 5, alt: { en: 'Instagram check-in', zh: 'Instagram 打卡' } },
-  { id: 6, alt: { en: 'Xiaohongshu check-in', zh: '小红书打卡' } },
+const PLATFORM_LABEL = {
+  instagram: { en: 'Instagram check-in', zh: 'Instagram 打卡' },
+  xiaohongshu: { en: 'Xiaohongshu check-in', zh: '小红书打卡' },
+};
+
+const PLACEHOLDER_ALTS = [
+  { en: 'Instagram check-in', zh: 'Instagram 打卡' },
+  { en: 'Xiaohongshu check-in', zh: '小红书打卡' },
+  { en: 'Instagram check-in', zh: 'Instagram 打卡' },
+  { en: 'Xiaohongshu check-in', zh: '小红书打卡' },
+  { en: 'Instagram check-in', zh: 'Instagram 打卡' },
+  { en: 'Xiaohongshu check-in', zh: '小红书打卡' },
 ];
 
-export default function Culture() {
+export default function Culture({ socialPosts = [] }) {
   const { lang } = useLanguage();
 
   return (
@@ -42,13 +49,20 @@ export default function Culture() {
           {T.culture.communityHeading[lang]}
         </h2>
         <div className="mt-7 grid grid-cols-3 split:grid-cols-6 gap-3">
-          {SOCIAL_PLACEHOLDERS.map((s) => (
-            <ImagePlaceholder
-              key={s.id}
-              label={s.alt[lang]}
-              className="aspect-square w-full rounded-md"
-            />
-          ))}
+          {socialPosts.length > 0
+            ? socialPosts.map((post) => (
+                <Image
+                  key={post._id}
+                  src={urlFor(post.image).width(400).height(400).fit('crop').auto('format').url()}
+                  alt={PLATFORM_LABEL[post.platform]?.[lang] || post.platform}
+                  width={400}
+                  height={400}
+                  className="aspect-square w-full rounded-md object-cover"
+                />
+              ))
+            : PLACEHOLDER_ALTS.map((alt, i) => (
+                <ImagePlaceholder key={i} label={alt[lang]} className="aspect-square w-full rounded-md" />
+              ))}
         </div>
       </div>
     </section>

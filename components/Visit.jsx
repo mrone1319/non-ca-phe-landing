@@ -36,7 +36,42 @@ function WhatsAppIcon(props) {
   );
 }
 
-export default function Visit() {
+const DAY_ORDER = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+function HoursList({ hours, lang }) {
+  if (!hours) {
+    return (
+      <p className="font-body text-[15.5px] leading-7 text-ink/85">
+        {T.visit.hoursLine1[lang]}
+        <br />
+        {T.visit.hoursLine2[lang]}
+      </p>
+    );
+  }
+
+  const announcement = lang === 'zh' ? hours.announcementZh : hours.announcementEn;
+
+  return (
+    <>
+      <dl className="font-body text-[15px] leading-7 text-ink/85">
+        {DAY_ORDER.map((day) => {
+          const d = hours[day];
+          return (
+            <div key={day} className="flex justify-between gap-3">
+              <dt className="text-ink/60">{T.visit.days[day][lang]}</dt>
+              <dd>{d?.closed ? T.visit.closed[lang] : `${d?.open || '?'} – ${d?.close || '?'}`}</dd>
+            </div>
+          );
+        })}
+      </dl>
+      {announcement && (
+        <p className="mt-2 font-body text-[13.5px] leading-6 text-accent-700 font-semibold">{announcement}</p>
+      )}
+    </>
+  );
+}
+
+export default function Visit({ businessHours }) {
   const { lang } = useLanguage();
 
   return (
@@ -56,9 +91,7 @@ export default function Visit() {
         </div>
         <div>
           <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">{T.visit.hours[lang]}</h3>
-          <p className="font-body text-[15.5px] leading-7 text-ink/85">
-            {T.visit.hoursLine1[lang]}<br />{T.visit.hoursLine2[lang]}
-          </p>
+          <HoursList hours={businessHours} lang={lang} />
         </div>
         <div>
           <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">{T.visit.follow[lang]}</h3>

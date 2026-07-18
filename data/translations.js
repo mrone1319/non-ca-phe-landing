@@ -39,6 +39,10 @@ export const T = {
     kicker: { en: 'The Menu', zh: '菜单' },
     heading: { en: 'Today’s Blackboard', zh: '今日风味黑板' },
     signature: { en: 'Signature', zh: '招牌必点' },
+    categories: {
+      phin: { en: 'Traditional Phin Drip', zh: '经典滴漏系列' },
+      special: { en: 'Handcrafted Specialty', zh: '匠心手作系列' },
+    },
   },
   culture: {
     kicker: { en: 'Slow Living', zh: '慢活哲学' },
@@ -60,8 +64,20 @@ export const T = {
     },
     getDirections: { en: 'Get Directions', zh: '导航前往' },
     hours: { en: 'Brewing Hours', zh: '营业时间' },
+    // Fallback text, used only if the businessHours document hasn't been
+    // created in Sanity yet (see components/Visit.jsx).
     hoursLine1: { en: 'Wed – Mon: 10:30 AM – 6:00 PM', zh: '周三至周一：上午 10:30 – 下午 6:00' },
     hoursLine2: { en: 'Tuesday: Closed', zh: '周二休息' },
+    closed: { en: 'Closed', zh: '休息' },
+    days: {
+      monday: { en: 'Mon', zh: '周一' },
+      tuesday: { en: 'Tue', zh: '周二' },
+      wednesday: { en: 'Wed', zh: '周三' },
+      thursday: { en: 'Thu', zh: '周四' },
+      friday: { en: 'Fri', zh: '周五' },
+      saturday: { en: 'Sat', zh: '周六' },
+      sunday: { en: 'Sun', zh: '周日' },
+    },
     follow: { en: 'Follow Along', zh: '关注我们' },
   },
   footer: {

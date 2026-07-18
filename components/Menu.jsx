@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { MENU } from '@/data/menu';
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
 import ImagePlaceholder from './ImagePlaceholder';
 import { useLanguage } from '@/lib/LanguageContext';
 import { T } from '@/data/translations';
@@ -15,23 +16,36 @@ function MenuCard({ item, lang }) {
             🌟 {T.menu.signature[lang]}
           </span>
         )}
-        <ImagePlaceholder label={item.imageLabel} className="w-full aspect-[4/3]" />
+        {item.image ? (
+          <Image
+            src={urlFor(item.image).width(600).height(450).fit('crop').auto('format').url()}
+            alt={item.titleEn}
+            width={600}
+            height={450}
+            className="block w-full aspect-[4/3] object-cover"
+          />
+        ) : (
+          <ImagePlaceholder label={item.vietnameseName} className="w-full aspect-[4/3]" />
+        )}
       </figure>
       <div className="p-4">
         <p className="font-body font-bold text-ink">
-          {item.title[lang]}
-          <span className="block text-[0.75em] font-semibold opacity-60 mt-1">{item.name}</span>
+          {lang === 'zh' ? item.titleZh : item.titleEn}
+          <span className="block text-[0.75em] font-semibold opacity-60 mt-1">{item.vietnameseName}</span>
         </p>
-        <p className="mt-2 font-body text-[14.5px] leading-6 text-ink/80">{item.desc[lang]}</p>
+        <p className="mt-2 font-body text-[14.5px] leading-6 text-ink/80">
+          {lang === 'zh' ? item.descZh : item.descEn}
+        </p>
       </div>
     </div>
   );
 }
 
-export default function Menu() {
+export default function Menu({ items = [] }) {
   const { lang } = useLanguage();
   const [tab, setTab] = useState('phin');
-  const active = MENU[tab];
+  const categories = ['phin', 'special'];
+  const activeItems = items.filter((item) => item.category === tab);
 
   return (
     <section id="menu" className="px-[clamp(20px,5vw,72px)] py-[84px] max-w-[1200px] mx-auto">
@@ -40,7 +54,7 @@ export default function Menu() {
       </h2>
 
       <div role="tablist" aria-label="Menu categories" className="mt-7 mb-8 flex flex-wrap gap-2">
-        {Object.entries(MENU).map(([key, cat]) => (
+        {categories.map((key) => (
           <button
             key={key}
             type="button"
@@ -56,7 +70,7 @@ export default function Menu() {
                 : 'border-ink/15 bg-transparent text-ink hover:bg-accent-100 hover:border-accent-300')
             }
           >
-            {cat.label[lang]}
+            {T.menu.categories[key][lang]}
           </button>
         ))}
       </div>
@@ -67,8 +81,8 @@ export default function Menu() {
         aria-labelledby={`tab-${tab}`}
         className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-7"
       >
-        {active.items.map((item) => (
-          <MenuCard key={item.id} item={item} lang={lang} />
+        {activeItems.map((item) => (
+          <MenuCard key={item._id} item={item} lang={lang} />
         ))}
       </div>
     </section>
