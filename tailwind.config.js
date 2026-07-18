@@ -33,8 +33,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['var(--font-heading)', 'system-ui', 'sans-serif'],
-        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        // Caprasimo/Figtree carry no CJK glyphs, so Chinese characters fall
+        // through per-glyph to the Noto SC pair — one class works for both
+        // languages, no lang-conditional className needed anywhere.
+        heading: ['var(--font-heading)', 'var(--font-heading-zh)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-body)', 'var(--font-body-zh)', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         sm: '8px', md: '16px', lg: '28px', xl: '56px',

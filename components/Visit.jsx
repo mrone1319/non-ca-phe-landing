@@ -1,3 +1,8 @@
+'use client';
+
+import { useLanguage } from '@/lib/LanguageContext';
+import { T } from '@/data/translations';
+
 const MAP_LINK = 'https://maps.app.goo.gl/TebukNGtycj98Acm7';
 const INSTAGRAM_LINK = 'https://www.instagram.com/non_ca_phe?igsh=M3JpNXQ5N201NWdi';
 const XIAOHONGSHU_LINK = 'https://xhslink.com/m/4N3kWAmTvW9';
@@ -32,29 +37,31 @@ function WhatsAppIcon(props) {
 }
 
 export default function Visit() {
+  const { lang } = useLanguage();
+
   return (
     <section id="visit" className="px-[clamp(20px,5vw,72px)] pt-[84px] max-w-[1200px] mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-y-7 gap-x-[clamp(24px,4vw,64px)] rounded-xl bg-sage-100 px-[clamp(24px,4vw,64px)] py-14">
         <div>
-          <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">Location</h3>
-          <p className="font-body text-[15.5px] leading-7 text-ink/85">Jalan Kuchai Maju 6, Kuchai Lama, Kuala Lumpur</p>
+          <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">{T.visit.location[lang]}</h3>
+          <p className="font-body text-[15.5px] leading-7 text-ink/85">{T.visit.address[lang]}</p>
           <a
             href={MAP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-1 inline-block font-body text-[14px] font-semibold text-accent-700 hover:text-accent-900 underline underline-offset-2"
           >
-            Get Directions →
+            {T.visit.getDirections[lang]} →
           </a>
         </div>
         <div>
-          <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">Brewing Hours</h3>
+          <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">{T.visit.hours[lang]}</h3>
           <p className="font-body text-[15.5px] leading-7 text-ink/85">
-            Wed – Mon: 10:30 AM – 6:00 PM<br />Tuesday: Closed
+            {T.visit.hoursLine1[lang]}<br />{T.visit.hoursLine2[lang]}
           </p>
         </div>
         <div>
-          <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">Follow Along</h3>
+          <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">{T.visit.follow[lang]}</h3>
           <p className="font-body text-[15.5px] leading-7 text-ink/85">@noncaphe</p>
           <div className="mt-3 flex gap-3">
             <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">

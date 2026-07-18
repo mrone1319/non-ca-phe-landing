@@ -1,12 +1,16 @@
 'use client';
 
 import ImagePlaceholder from './ImagePlaceholder';
+import { useLanguage } from '@/lib/LanguageContext';
+import { T } from '@/data/translations';
 
 function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
 
 export default function Hero() {
+  const { lang } = useLanguage();
+
   return (
     <section className="relative grid grid-cols-1 split:grid-cols-[6fr_5fr] items-center gap-y-7 split:gap-x-[clamp(24px,5vw,72px)] px-[clamp(20px,5vw,72px)] py-[84px] max-w-[1200px] mx-auto">
       <div
@@ -15,15 +19,11 @@ export default function Hero() {
       />
       <div>
         <h1 className="font-heading text-[38px] md:text-[64px] leading-[1.08] -ml-[0.028em]">
-          <span className="block">More than coffee,</span>
-          <span className="block">it&rsquo;s a culture.</span>
+          <span className="block">{T.hero.heading1[lang]}</span>
+          <span className="block">{T.hero.heading2[lang]}</span>
         </h1>
         <p className="mt-6 max-w-[58ch] font-body text-[17px] leading-7 text-ink">
-          A 2-year journey of craftsmanship by a Malaysian-Vietnamese couple. Bringing authentic,
-          direct-trade Vietnamese coffee straight to the heart of Kuchai Lama.
-          <span className="block mt-2 text-[0.88em] opacity-75">
-            不只是一杯咖啡，更是一场文化蔓延。马越夫妻的两年手作坚守，将原产地直供的浓厚风味，带入 Kuchai Lama 的日常时光。
-          </span>
+          {T.hero.subhead[lang]}
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <button
@@ -31,22 +31,19 @@ export default function Hero() {
             onClick={() => scrollToId('menu')}
             className="rounded-full bg-accent px-6 py-3 font-body font-bold text-neutral-100 hover:bg-accent-600 active:bg-accent-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            Explore Menu / 浏览今日风味
+            {T.hero.exploreMenu[lang]}
           </button>
           <button
             type="button"
             onClick={() => scrollToId('visit')}
             className="rounded-full border border-accent-700 px-6 py-3 font-body font-bold text-accent-700 hover:bg-accent-100 active:bg-accent-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            Find Us / 导航到店
+            {T.hero.findUs[lang]}
           </button>
         </div>
       </div>
       <figure className="m-0 w-full overflow-hidden rounded-xl shadow-lg">
-        <ImagePlaceholder
-          label="Slow-drip coffee, cinematic hero shot"
-          className="w-full aspect-[4/5]"
-        />
+        <ImagePlaceholder label={T.hero.photoAlt[lang]} className="w-full aspect-[4/5]" />
       </figure>
     </section>
   );

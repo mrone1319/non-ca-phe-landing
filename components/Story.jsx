@@ -1,34 +1,29 @@
+'use client';
+
 import ImagePlaceholder from './ImagePlaceholder';
+import { useLanguage } from '@/lib/LanguageContext';
+import { T } from '@/data/translations';
 
 export default function Story() {
+  const { lang } = useLanguage();
+
   return (
     <section id="story" className="grid grid-cols-1 split:grid-cols-[5fr_7fr] items-center gap-y-7 split:gap-x-[clamp(24px,5vw,96px)] px-[clamp(20px,5vw,72px)] py-[84px] max-w-[1200px] mx-auto">
       <figure className="order-first m-0 w-full overflow-hidden rounded-xl">
-        <ImagePlaceholder
-          label="Founders crafting coffee, polaroid style"
-          className="w-full aspect-[4/5]"
-        />
+        <ImagePlaceholder label={T.story.photoAlt[lang]} className="w-full aspect-[4/5]" />
       </figure>
       <div>
         <span className="block text-[13px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-3">
-          Our Journey
+          {T.story.kicker[lang]}
         </span>
-        <h2 className="font-heading text-[34px] leading-[1.4]">
-          From Hanoi to KL
-          <span className="block text-[0.56em] mt-1">我们的故事：从河内到吉隆坡</span>
+        <h2 className="font-heading text-[34px] leading-[1.3]">
+          {T.story.heading[lang]}
         </h2>
         <p className="mt-3 max-w-[54ch] font-body text-[15.5px] leading-7 text-ink/80">
-          It started with a cup of cà phê sữa đá on a Hanoi afternoon — and a Malaysian traveller who
-          fell for the coffee, and then for the woman who poured it. Two years later, that same care
-          sits behind our counter in Kuchai Lama.
+          {T.story.p1[lang]}
         </p>
         <p className="mt-3 max-w-[54ch] font-body text-[15.5px] leading-7 text-ink/80">
-          We buy directly from small farms along Vietnam&rsquo;s central highlands, choosing every sack
-          ourselves and roasting to the bold, unhurried profile our home taught us. No shortcuts, no
-          instant blends — just the phin, gravity, and time.
-        </p>
-        <p className="mt-3 max-w-[54ch] font-body text-[14.5px] leading-7 opacity-75">
-          故事始于河内午后的一杯越式炼乳冰咖啡——一位马来西亚旅人，先爱上了这杯咖啡，后来爱上了泡咖啡的人。两年后，同样的用心，落在了 Kuchai Lama 的这方柜台。我们直接向越南中部高原的小农采购，亲自挑选每一袋豆子，用家乡教会我们的浓烈与从容烘焙。没有捷径，没有速溶——只有滴漏壶、重力与时间。
+          {T.story.p2[lang]}
         </p>
       </div>
     </section>

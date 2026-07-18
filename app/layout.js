@@ -1,5 +1,6 @@
-import { Caprasimo, Figtree } from 'next/font/google';
+import { Caprasimo, Figtree, Noto_Sans_SC, Noto_Serif_SC } from 'next/font/google';
 import './globals.css';
+import { LanguageProvider } from '@/lib/LanguageContext';
 
 const caprasimo = Caprasimo({
   subsets: ['latin'],
@@ -15,6 +16,20 @@ const figtree = Figtree({
   display: 'swap',
 });
 
+const notoSerifSC = Noto_Serif_SC({
+  subsets: ['latin'],
+  weight: ['700', '900'],
+  variable: '--font-heading-zh',
+  display: 'swap',
+});
+
+const notoSansSC = Noto_Sans_SC({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-body-zh',
+  display: 'swap',
+});
+
 export const metadata = {
   title: "NÓN Cà Phê — More than coffee, it's a culture",
   description:
@@ -23,8 +38,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${caprasimo.variable} ${figtree.variable}`}>
-      <body className="bg-bg text-ink font-body">{children}</body>
+    <html
+      lang="en"
+      className={`${caprasimo.variable} ${figtree.variable} ${notoSerifSC.variable} ${notoSansSC.variable}`}
+    >
+      <body className="bg-bg text-ink font-body">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

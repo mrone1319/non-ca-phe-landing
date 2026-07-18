@@ -3,38 +3,40 @@
 import { useState } from 'react';
 import { MENU } from '@/data/menu';
 import ImagePlaceholder from './ImagePlaceholder';
+import { useLanguage } from '@/lib/LanguageContext';
+import { T } from '@/data/translations';
 
-function MenuCard({ item }) {
+function MenuCard({ item, lang }) {
   return (
     <div className="flex flex-col overflow-hidden rounded-md bg-neutral-100 shadow-sm">
       <figure className="relative m-0">
         {item.signature && (
           <span className="absolute left-3 top-3 rounded-full bg-accent-100 px-3 py-1 text-xs font-bold text-accent-700">
-            🌟 Signature / 招牌必点
+            🌟 {T.menu.signature[lang]}
           </span>
         )}
         <ImagePlaceholder label={item.imageLabel} className="w-full aspect-[4/3]" />
       </figure>
       <div className="p-4">
         <p className="font-body font-bold text-ink">
-          {item.title}
-          <span className="block text-[0.62em] font-semibold opacity-70 mt-1">{item.sub}</span>
+          {item.title[lang]}
+          <span className="block text-[0.75em] font-semibold opacity-60 mt-1">{item.name}</span>
         </p>
-        <p className="mt-2 font-body text-[14.5px] leading-6 text-ink/80">{item.desc}</p>
+        <p className="mt-2 font-body text-[14.5px] leading-6 text-ink/80">{item.desc[lang]}</p>
       </div>
     </div>
   );
 }
 
 export default function Menu() {
+  const { lang } = useLanguage();
   const [tab, setTab] = useState('phin');
   const active = MENU[tab];
 
   return (
     <section id="menu" className="px-[clamp(20px,5vw,72px)] py-[84px] max-w-[1200px] mx-auto">
       <h2 className="font-heading text-[34px] leading-[1.3]">
-        Today&rsquo;s Blackboard
-        <span className="block text-[0.56em] mt-1">今日风味黑板</span>
+        {T.menu.heading[lang]}
       </h2>
 
       <div role="tablist" aria-label="Menu categories" className="mt-7 mb-8 flex flex-wrap gap-2">
@@ -54,7 +56,7 @@ export default function Menu() {
                 : 'border-ink/15 bg-transparent text-ink hover:bg-accent-100 hover:border-accent-300')
             }
           >
-            {cat.label}
+            {cat.label[lang]}
           </button>
         ))}
       </div>
@@ -66,7 +68,7 @@ export default function Menu() {
         className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-7"
       >
         {active.items.map((item) => (
-          <MenuCard key={item.id} item={item} />
+          <MenuCard key={item.id} item={item} lang={lang} />
         ))}
       </div>
     </section>
