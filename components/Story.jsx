@@ -14,11 +14,11 @@ export default function Story() {
           Our Journey
         </span>
         <h2 className="font-heading text-[34px] leading-[1.4]">
-          From Saigon to KL
-          <span className="block text-[0.56em] mt-1">我们的故事：从西贡到吉隆坡</span>
+          From Hanoi to KL
+          <span className="block text-[0.56em] mt-1">我们的故事：从河内到吉隆坡</span>
         </h2>
         <p className="mt-3 max-w-[54ch] font-body text-[15.5px] leading-7 text-ink/80">
-          It started with a cup of cà phê sữa đá on a Saigon afternoon — and a Malaysian traveller who
+          It started with a cup of cà phê sữa đá on a Hanoi afternoon — and a Malaysian traveller who
           fell for the coffee, and then for the woman who poured it. Two years later, that same care
           sits behind our counter in Kuchai Lama.
         </p>
@@ -28,7 +28,7 @@ export default function Story() {
           instant blends — just the phin, gravity, and time.
         </p>
         <p className="mt-3 max-w-[54ch] font-body text-[14.5px] leading-7 opacity-75">
-          故事始于西贡午后的一杯越式炼乳冰咖啡——一位马来西亚旅人，先爱上了这杯咖啡，后来爱上了泡咖啡的人。两年后，同样的用心，落在了 Kuchai Lama 的这方柜台。我们直接向越南中部高原的小农采购，亲自挑选每一袋豆子，用家乡教会我们的浓烈与从容烘焙。没有捷径，没有速溶——只有滴漏壶、重力与时间。
+          故事始于河内午后的一杯越式炼乳冰咖啡——一位马来西亚旅人，先爱上了这杯咖啡，后来爱上了泡咖啡的人。两年后，同样的用心，落在了 Kuchai Lama 的这方柜台。我们直接向越南中部高原的小农采购，亲自挑选每一袋豆子，用家乡教会我们的浓烈与从容烘焙。没有捷径，没有速溶——只有滴漏壶、重力与时间。
         </p>
       </div>
     </section>

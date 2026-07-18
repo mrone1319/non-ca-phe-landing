@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Story from '@/components/Story';
+import FounderStory from '@/components/FounderStory';
 import Menu from '@/components/Menu';
 import Culture from '@/components/Culture';
 import Visit from '@/components/Visit';
@@ -13,6 +14,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <Story />
+      <FounderStory />
       <Menu />
       <Culture />
       <Visit />
