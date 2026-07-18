@@ -1,3 +1,8 @@
+const MAP_LINK = 'https://maps.app.goo.gl/TebukNGtycj98Acm7';
+const INSTAGRAM_LINK = 'https://www.instagram.com/non_ca_phe?igsh=M3JpNXQ5N201NWdi';
+const XIAOHONGSHU_LINK = 'https://xhslink.com/m/4N3kWAmTvW9';
+const WHATSAPP_LINK = 'https://wa.me/60172168865';
+
 function InstagramIcon(props) {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -17,6 +22,15 @@ function XiaohongshuIcon(props) {
   );
 }
 
+function WhatsAppIcon(props) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M3 21l1.4-4.2A8 8 0 1 1 8.2 19.6z" />
+      <path d="M8.5 9.5c.3 2.6 2.4 4.7 5 5" />
+    </svg>
+  );
+}
+
 export default function Visit() {
   return (
     <section id="visit" className="px-[clamp(20px,5vw,72px)] pt-[84px] max-w-[1200px] mx-auto">
@@ -24,6 +38,14 @@ export default function Visit() {
         <div>
           <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">Location</h3>
           <p className="font-body text-[15.5px] leading-7 text-ink/85">Jalan Kuchai Maju 6, Kuchai Lama, Kuala Lumpur</p>
+          <a
+            href={MAP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 inline-block font-body text-[14px] font-semibold text-accent-700 hover:text-accent-900 underline underline-offset-2"
+          >
+            Get Directions →
+          </a>
         </div>
         <div>
           <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">Brewing Hours</h3>
@@ -35,11 +57,14 @@ export default function Visit() {
           <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">Follow Along</h3>
           <p className="font-body text-[15.5px] leading-7 text-ink/85">@noncaphe</p>
           <div className="mt-3 flex gap-3">
-            <a href="#" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">
+            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">
               <InstagramIcon />
             </a>
-            <a href="#" aria-label="Xiaohongshu" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">
+            <a href={XIAOHONGSHU_LINK} target="_blank" rel="noopener noreferrer" aria-label="Xiaohongshu" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">
               <XiaohongshuIcon />
+            </a>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">
+              <WhatsAppIcon />
             </a>
           </div>
         </div>

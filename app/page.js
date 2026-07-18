@@ -5,6 +5,7 @@ import Menu from '@/components/Menu';
 import Culture from '@/components/Culture';
 import Visit from '@/components/Visit';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Culture />
       <Visit />
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }
