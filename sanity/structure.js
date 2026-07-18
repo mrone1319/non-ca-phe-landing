@@ -3,6 +3,14 @@ export const structure = (S) =>
     .title('Content')
     .items([
       S.listItem()
+        .title('Site Photos')
+        .id('siteImages')
+        .child(
+          S.document()
+            .schemaType('siteImages')
+            .documentId('siteImages')
+        ),
+      S.listItem()
         .title('Business Hours')
         .id('businessHours')
         .child(
@@ -12,6 +20,6 @@ export const structure = (S) =>
         ),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() !== 'businessHours'
+        (item) => !['businessHours', 'siteImages'].includes(item.getId())
       ),
     ]);

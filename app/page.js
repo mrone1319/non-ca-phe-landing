@@ -7,24 +7,25 @@ import Culture from '@/components/Culture';
 import Visit from '@/components/Visit';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { getMenuItems, getSocialPosts, getBusinessHours } from '@/lib/sanity-queries';
+import { getMenuItems, getSocialPosts, getBusinessHours, getSiteImages } from '@/lib/sanity-queries';
 
 // Re-fetch from Sanity in the background at most once a minute, so edits
 // made in /studio go live without a manual redeploy.
 export const revalidate = 60;
 
 export default async function Home() {
-  const [menuItems, socialPosts, businessHours] = await Promise.all([
+  const [menuItems, socialPosts, businessHours, siteImages] = await Promise.all([
     getMenuItems(),
     getSocialPosts(),
     getBusinessHours(),
+    getSiteImages(),
   ]);
 
   return (
     <>
       <Nav />
-      <Hero />
-      <Story />
+      <Hero image={siteImages?.heroImage} />
+      <Story image={siteImages?.storyImage} />
       <FounderStory />
       <Menu items={menuItems} />
       <Culture socialPosts={socialPosts} />

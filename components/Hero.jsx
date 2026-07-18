@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
 import ImagePlaceholder from './ImagePlaceholder';
 import { useLanguage } from '@/lib/LanguageContext';
 import { T } from '@/data/translations';
@@ -8,7 +10,7 @@ function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
 
-export default function Hero() {
+export default function Hero({ image }) {
   const { lang } = useLanguage();
 
   return (
@@ -43,7 +45,18 @@ export default function Hero() {
         </div>
       </div>
       <figure className="m-0 w-full overflow-hidden rounded-xl shadow-lg">
-        <ImagePlaceholder label={T.hero.photoAlt[lang]} className="w-full aspect-[4/5]" />
+        {image ? (
+          <Image
+            src={urlFor(image).width(800).height(1000).fit('crop').auto('format').url()}
+            alt={T.hero.photoAlt[lang]}
+            width={800}
+            height={1000}
+            priority
+            className="w-full aspect-[4/5] object-cover"
+          />
+        ) : (
+          <ImagePlaceholder label={T.hero.photoAlt[lang]} className="w-full aspect-[4/5]" />
+        )}
       </figure>
     </section>
   );
