@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NÓN Cà Phê — More than coffee, it's a culture</title>
+<script src="./ds-base.js"></script>
+<style>
+:root {
+  --leading: 28px;
+  --half: 14px;
+  --edge: clamp(20px, 5vw, 72px);
+  --measure: 58ch;
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; text-wrap: pretty; overflow-x: clip; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--edge); }
+.nav { padding-inline: max(var(--edge), calc((100% - 1200px) / 2 + var(--edge))); position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(6px); }
+.nav-brand { display: inline-flex; align-items: center; gap: var(--space-2); }
+.nav-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+.nav a { white-space: nowrap; }
+@media (max-width: 720px) { .nav a { display: none; } }
+
+.zh { display: block; font-size: 0.62em; font-weight: 600; opacity: 0.82; letter-spacing: 0.01em; margin-top: 0.3em; }
+.kicker { display: block; font-size: 13px; line-height: var(--half); letter-spacing: 0.06em;
+  text-transform: uppercase; font-weight: 600; color: var(--color-accent-700);
+  margin: 0 0 calc(var(--leading) - var(--half)); }
+
+/* — hero — */
+.hero { position: relative; padding: calc(3 * var(--leading)) 0 calc(3 * var(--leading));
+  display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--leading) clamp(24px, 5vw, 72px);
+  align-items: center; }
+.hero::before { content: ""; position: absolute; left: -160px; bottom: -200px;
+  width: 380px; height: 380px; border-radius: 50%; background: var(--color-accent-2-200);
+  pointer-events: none; z-index: -1; }
+.display { font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: clamp(38px, 5vw, 64px); line-height: clamp(41px, 5.4vw, 69px);
+  letter-spacing: 0; margin: 0; margin-left: -0.028em; text-box: trim-both cap alphabetic; }
+.display .line { display: block; }
+.hero .sub { font-size: 17px; line-height: var(--leading); max-width: var(--measure);
+  margin: calc(1.4 * var(--leading) - 1cap) 0 0; text-box: trim-both cap alphabetic; }
+.hero .sub .zh { font-size: 0.88em; margin-top: 0.5em; opacity: 0.75; }
+.hero .row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--leading); }
+.hero-figure { margin: 0; width: 100%; border-radius: calc(2 * var(--radius-lg)); overflow: hidden;
+  box-shadow: var(--shadow-lg); }
+.hero-figure image-slot { width: 100%; aspect-ratio: 4 / 5; }
+
+/* — story split — */
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--leading) clamp(24px, 5vw, 96px);
+  align-items: center; padding: calc(3 * var(--leading)) 0; }
+.split-figure { margin: 0; width: 100%; border-radius: calc(2 * var(--radius-lg)); overflow: hidden; }
+.split-figure image-slot { width: 100%; aspect-ratio: 4 / 5; }
+.split-title { font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 34px; line-height: calc(1.4 * var(--leading)); margin: 0; text-box: trim-both cap alphabetic; }
+.split-title .zh { font-size: 0.56em; margin-top: 0.35em; }
+.split-copy p { font-size: 15.5px; line-height: var(--leading);
+  color: color-mix(in srgb, var(--color-text) 82%, transparent);
+  margin: var(--half) 0 0; max-width: 54ch; text-box: trim-both cap alphabetic; }
+.split-copy p.zh-p { opacity: 0.75; font-size: 14.5px; }
+
+/* — menu — */
+.menu { padding: calc(3 * var(--leading)) 0; }
+.menu-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--leading); }
+.section-title { font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 34px; line-height: calc(1.3 * var(--leading)); margin: 0; text-box: trim-both cap alphabetic; }
+.section-title .zh { font-size: 0.56em; margin-top: 0.3em; }
+.tabs { display: flex; gap: var(--space-2); flex-wrap: wrap; margin: var(--leading) 0 calc(1.5 * var(--leading)); }
+.tab-btn { font-family: var(--font-body); font-size: 15px; font-weight: 700; cursor: pointer;
+  padding: 10px 22px; border-radius: 999px; border: 1px solid var(--color-divider);
+  background: transparent; color: var(--color-text); transition: background .15s, color .15s, border-color .15s; }
+.tab-btn:hover { background: var(--color-accent-100); border-color: var(--color-accent-300); }
+.tab-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.tab-btn[aria-selected="true"] { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-neutral-100); }
+.tab-panel { display: none; }
+.tab-panel.active { display: grid; }
+.menu-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--leading); }
+.menu-card { display: flex; flex-direction: column; overflow: hidden; }
+.menu-card-figure { margin: 0; position: relative; }
+.menu-card-figure image-slot { width: 100%; aspect-ratio: 4 / 3; display: block; }
+.menu-card-figure .tag { position: absolute; top: var(--space-3); left: var(--space-3); }
+.menu-card .card-title .zh { font-size: 0.62em; font-weight: 600; opacity: 0.7; margin-top: 0.25em; }
+.menu-card .card-body { font-size: 14.5px; }
+
+/* — culture / accordion + social — */
+.culture { padding: calc(3 * var(--leading)) 0; }
+.acc-wrap { max-width: 720px; }
+details.acc { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-3); }
+details.acc summary { cursor: pointer; list-style: none; font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 20px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+details.acc summary::-webkit-details-marker { display: none; }
+details.acc summary::after { content: "+"; font-size: 24px; color: var(--color-accent-700); transition: transform .2s; }
+details.acc[open] summary::after { content: "–"; }
+details.acc summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+details.acc .acc-body { font-size: 15px; line-height: var(--leading); color: color-mix(in srgb, var(--color-text) 82%, transparent);
+  margin-top: var(--half); max-width: 60ch; }
+details.acc .acc-body .zh-p { opacity: 0.75; font-size: 14px; margin-top: var(--half); }
+
+.social-head { margin-top: calc(3 * var(--leading)); }
+.social-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-3); margin-top: var(--leading); }
+.social-grid image-slot { width: 100%; aspect-ratio: 1; border-radius: var(--radius-md); overflow: hidden; }
+@media (max-width: 880px) { .social-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* — footer — */
+.close { padding: calc(3 * var(--leading)) 0 0; }
+.patch { background: var(--color-accent-2-100); border-radius: calc(2 * var(--radius-lg));
+  padding: calc(2 * var(--leading)) clamp(24px, 4vw, 64px); display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--leading) clamp(24px, 4vw, 64px); }
+.patch h3 { font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 var(--half);
+  color: var(--color-accent-700); }
+.patch p { font-size: 15.5px; line-height: var(--leading); margin: 0;
+  color: color-mix(in srgb, var(--color-text) 85%, transparent); }
+.patch .socials { display: flex; gap: var(--space-3); margin-top: var(--half); }
+.patch .socials a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+  border-radius: 50%; background: var(--color-accent-2-200); color: var(--color-accent-2-800); }
+.patch .socials a:hover { background: var(--color-accent-2-300); }
+footer { padding: calc(2 * var(--leading)) 0; font-size: 13px; line-height: var(--leading); text-align: center;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent); }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; }
+  .split-figure { order: -1; }
+}
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent-900); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="nav-brand"><img src="assets/logo.png" alt="NÓN Cà Phê logo" /> <strong>NÓN Cà Phê</strong></span>
+  <a href="#story">Our Story</a>
+  <a href="#menu">Menu</a>
+  <a href="#visit">Visit</a>
+  <button type="button" class="btn btn-primary" onclick="document.getElementById('visit').scrollIntoView({behavior:'smooth'})">Find Us / 导航到店</button>
+</nav>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <h1 class="display">
+        <span class="line">More than coffee,</span>
+        <span class="line">it's a culture.</span>
+      </h1>
+      <p class="sub">A 2-year journey of craftsmanship by a Malaysian-Vietnamese couple. Bringing authentic, direct-trade Vietnamese coffee straight to the heart of Kuchai Lama.
+        <span class="zh">不只是一杯咖啡，更是一场文化蔓延。马越夫妻的两年手作坚守，将原产地直供的浓厚风味，带入 Kuchai Lama 的日常时光。</span>
+      </p>
+      <div class="row">
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu / 浏览今日风味</button>
+        <button type="button" class="btn btn-ghost" onclick="document.getElementById('visit').scrollIntoView({behavior:'smooth'})">Find Us / 导航到店</button>
+      </div>
+    </div>
+    <figure class="hero-figure washed">
+      <image-slot id="hero-photo" shape="rect" placeholder="Slow-drip coffee, cinematic hero shot" aria-label="Slow-drip phin coffee, hero photograph"></image-slot>
+    </figure>
+  </section>
+
+  <section class="split" id="story">
+    <figure class="split-figure washed">
+      <image-slot id="story-photo" shape="rect" placeholder="Founders crafting coffee, polaroid style" aria-label="The founders crafting coffee together"></image-slot>
+    </figure>
+    <div class="split-copy">
+      <span class="kicker">Our Journey</span>
+      <h2 class="split-title">From Saigon to KL<span class="zh">我们的故事：从西贡到吉隆坡</span></h2>
+      <p>It started with a cup of cà phê sữa đá on a Saigon afternoon — and a Malaysian traveller who fell for the coffee, and then for the woman who poured it. Two years later, that same care sits behind our counter in Kuchai Lama.</p>
+      <p>We buy directly from small farms along Vietnam's central highlands, choosing every sack ourselves and roasting to the bold, unhurried profile our home taught us. No shortcuts, no instant blends — just the phin, gravity, and time.</p>
+      <p class="zh-p">故事始于西贡午后的一杯越式炼乳冰咖啡——一位马来西亚旅人，先爱上了这杯咖啡，后来爱上了泡咖啡的人。两年后，同样的用心，落在了 Kuchai Lama 的这方柜台。我们直接向越南中部高原的小农采购，亲自挑选每一袋豆子，用家乡教会我们的浓烈与从容烘焙。没有捷径，没有速溶——只有滴漏壶、重力与时间。</p>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div class="menu-head">
+      <h2 class="section-title">Today's Blackboard<span class="zh">今日风味黑板</span></h2>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Menu categories">
+      <button type="button" class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-phin" id="tab-phin" onclick="showTab('phin')">Traditional Phin Drip / 经典滴漏系列</button>
+      <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-special" id="tab-special" onclick="showTab('special')">Handcrafted Specialty / 匠心手作系列</button>
+    </div>
+
+    <div class="tab-panel menu-grid active" id="panel-phin" role="tabpanel" aria-labelledby="tab-phin">
+      <div class="card menu-card elev-sm">
+        <figure class="menu-card-figure">
+          <image-slot id="menu-den" shape="rect" placeholder="Cà Phê Đen"></image-slot>
+        </figure>
+        <p class="card-title">Vietnamese Black Coffee<span class="zh">Cà Phê Đen · 黑咖啡</span></p>
+        <p class="card-body">Bold, slow-dripped robusta over ice or hot, no sugar needed — just deep roasted intensity.</p>
+      </div>
+      <div class="card menu-card elev-sm">
+        <figure class="menu-card-figure">
+          <span class="tag tag-accent">🌟 Signature / 招牌必点</span>
+          <image-slot id="menu-suada" shape="rect" placeholder="Cà Phê Sữa Đá"></image-slot>
+        </figure>
+        <p class="card-title">Vietnamese Iced Milk Coffee<span class="zh">Cà Phê Sữa Đá · 越式炼乳冰咖啡</span></p>
+        <p class="card-body">Our house classic — dark phin-dripped coffee swirled with condensed milk over ice.</p>
+      </div>
+    </div>
+
+    <div class="tab-panel menu-grid" id="panel-special" role="tabpanel" aria-labelledby="tab-special">
+      <div class="card menu-card elev-sm">
+        <figure class="menu-card-figure">
+          <span class="tag tag-accent">🌟 Signature / 招牌必点</span>
+          <image-slot id="menu-trung" shape="rect" placeholder="Cà Phê Trứng"></image-slot>
+        </figure>
+        <p class="card-title">Vietnamese Egg Coffee<span class="zh">Cà Phê Trứng · 黄金蛋咖啡</span></p>
+        <p class="card-body">Whipped egg yolk, condensed milk and coffee, layered into a warm, custard-like crema.</p>
+      </div>
+      <div class="card menu-card elev-sm">
+        <figure class="menu-card-figure">
+          <image-slot id="menu-coco" shape="rect" placeholder="Coconut Espresso Slush"></image-slot>
+        </figure>
+        <p class="card-title">Coconut Espresso Slush<span class="zh">Cà Phê Cốt Dừa · 椰香冰咖啡</span></p>
+        <p class="card-body">Frozen coconut cream blended with espresso for a tropical, rich finish.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="culture">
+    <span class="kicker">Slow Living</span>
+    <h2 class="section-title">Why so slow?<span class="zh">为什么越南咖啡这么慢？</span></h2>
+    <div class="acc-wrap">
+      <details class="acc" open>
+        <summary>💡 The phin, and the patience it asks for</summary>
+        <div class="acc-body">
+          <p>The phin drip works on gravity alone — no pressure, no rush. Each drop falls in its own time, giving the beans room to bloom fully. In a city that moves fast, we think five slow minutes is a gift, not a delay.</p>
+          <p class="zh-p">滴漏壶只靠重力工作——没有压力，没有催促。每一滴都按自己的节奏落下，让咖啡豆充分绽放。在这座飞速运转的城市里，我们相信这五分钟的等待，是一份礼物，而不是耽搁。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="social-head">
+      <span class="kicker">Community</span>
+      <h2 class="section-title">From our regulars<span class="zh">来自老顾客的分享</span></h2>
+    </div>
+    <div class="social-grid">
+      <image-slot id="social-1" shape="rect" placeholder="Instagram check-in"></image-slot>
+      <image-slot id="social-2" shape="rect" placeholder="Xiaohongshu check-in"></image-slot>
+      <image-slot id="social-3" shape="rect" placeholder="Instagram check-in"></image-slot>
+      <image-slot id="social-4" shape="rect" placeholder="Xiaohongshu check-in"></image-slot>
+      <image-slot id="social-5" shape="rect" placeholder="Instagram check-in"></image-slot>
+      <image-slot id="social-6" shape="rect" placeholder="Xiaohongshu check-in"></image-slot>
+    </div>
+  </section>
+
+  <section class="close" id="visit">
+    <div class="patch">
+      <div>
+        <h3>Location</h3>
+        <p>Jalan Kuchai Maju 6, Kuchai Lama, Kuala Lumpur</p>
+      </div>
+      <div>
+        <h3>Brewing Hours</h3>
+        <p>Wed – Mon: 10:30 AM – 6:00 PM<br />Tuesday: Closed</p>
+      </div>
+      <div>
+        <h3>Follow Along</h3>
+        <p>@noncaphe</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Xiaohongshu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 9v6M8 9h3.2c1.1 0 1.8.9 1.8 2s-.7 2-1.8 2H8M15 9v6M15 9h2.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>NÓN Cà Phê · Kuchai Lama, Kuala Lumpur · More than coffee, it's a culture.</footer>
+</div>
+<script src="image-slot.js"></script>
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.setAttribute('aria-selected', b.id === 'tab-' + name ? 'true' : 'false'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
+}
+</script>
+</body>
+</html>
