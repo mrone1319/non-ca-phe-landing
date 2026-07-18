@@ -55,8 +55,8 @@ export const T = {
     kicker: { en: 'Visit Us', zh: '门店信息' },
     location: { en: 'Location', zh: '地址' },
     address: {
-      en: 'Jalan Kuchai Maju 6, Kuchai Lama, Kuala Lumpur',
-      zh: 'Jalan Kuchai Maju 6, Kuchai Lama, Kuala Lumpur',
+      en: '36, Jalan Kuchai Maju 6, Kuchai Entrepreneurs Park, Kuchai Lama, 58200 Kuala Lumpur, Wilayah Persekutuan',
+      zh: '36, Jalan Kuchai Maju 6, Kuchai Entrepreneurs Park, Kuchai Lama, 58200 Kuala Lumpur, Wilayah Persekutuan',
     },
     getDirections: { en: 'Get Directions', zh: '导航前往' },
     hours: { en: 'Brewing Hours', zh: '营业时间' },
