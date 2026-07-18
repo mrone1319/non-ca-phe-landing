@@ -63,6 +63,7 @@ export default function Culture({ socialPosts = [] }) {
                   alt={PLATFORM_LABEL[post.platform]?.[lang] || post.platform}
                   width={400}
                   height={400}
+                  sizes="(min-width: 881px) 16vw, 30vw"
                   className="aspect-square w-full rounded-md object-cover"
                 />
               ))

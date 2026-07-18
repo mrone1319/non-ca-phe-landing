@@ -18,6 +18,7 @@ export default function Story({ image }) {
             alt={T.story.photoAlt[lang]}
             width={700}
             height={875}
+            sizes="(min-width: 881px) 42vw, 100vw"
             className="w-full aspect-[4/5] object-cover"
           />
         ) : (

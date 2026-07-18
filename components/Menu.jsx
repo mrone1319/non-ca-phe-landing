@@ -19,9 +19,10 @@ function MenuCard({ item, lang }) {
         {item.image ? (
           <Image
             src={urlFor(item.image).width(600).height(450).fit('crop').auto('format').url()}
-            alt={item.titleEn}
+            alt={lang === 'zh' ? item.titleZh : item.titleEn}
             width={600}
             height={450}
+            sizes="(min-width: 640px) 320px, 100vw"
             className="block w-full aspect-[4/3] object-cover"
           />
         ) : (

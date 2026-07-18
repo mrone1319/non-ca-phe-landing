@@ -52,6 +52,7 @@ export default function Hero({ image }) {
             width={800}
             height={1000}
             priority
+            sizes="(min-width: 881px) 45vw, 100vw"
             className="w-full aspect-[4/5] object-cover"
           />
         ) : (
