@@ -20,9 +20,9 @@ export default function Nav() {
           <Image
             src={logo}
             alt="NÓN Cà Phê logo"
-            width={34}
-            height={34}
-            className="w-[34px] h-[34px] rounded-full object-cover"
+            width={46}
+            height={46}
+            className="w-[46px] h-[46px] rounded-full object-cover"
           />
           <span className="hidden sm:inline">NÓN Cà Phê</span>
         </span>

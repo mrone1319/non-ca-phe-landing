@@ -7,6 +7,16 @@ const MAP_LINK = 'https://maps.app.goo.gl/TebukNGtycj98Acm7';
 const INSTAGRAM_LINK = 'https://www.instagram.com/non_ca_phe?igsh=M3JpNXQ5N201NWdi';
 const XIAOHONGSHU_LINK = 'https://xhslink.com/m/4N3kWAmTvW9';
 const WHATSAPP_LINK = 'https://wa.me/60172168865';
+const FACEBOOK_LINK = 'https://www.facebook.com/Noncaphekuchai';
+
+function FacebookIcon(props) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <path d="M14 8.5h-1.5a2 2 0 0 0-2 2V12H9v3h1.5v4h3v-4H15l.5-3h-2v-1a.5.5 0 0 1 .5-.5H15" />
+    </svg>
+  );
+}
 
 function InstagramIcon(props) {
   return (
@@ -95,8 +105,10 @@ export default function Visit({ businessHours }) {
         </div>
         <div>
           <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-accent-700 mb-2">{T.visit.follow[lang]}</h3>
-          <p className="font-body text-[15.5px] leading-7 text-ink/85">@noncaphe</p>
-          <div className="mt-3 flex gap-3">
+          <div className="mt-1 flex gap-3">
+            <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">
+              <FacebookIcon />
+            </a>
             <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-200 text-sage-800 hover:bg-sage-300">
               <InstagramIcon />
             </a>
