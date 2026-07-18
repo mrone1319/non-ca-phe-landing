@@ -18,6 +18,12 @@ export const socialPost = {
         list: [
           { title: 'Instagram', value: 'instagram' },
           { title: 'Xiaohongshu / 小红书', value: 'xiaohongshu' },
+          { title: 'Facebook', value: 'facebook' },
+          { title: 'TikTok', value: 'tiktok' },
+          { title: 'WeChat / 微信', value: 'wechat' },
+          { title: 'Google Reviews', value: 'google' },
+          { title: 'Twitter / X', value: 'twitter' },
+          { title: 'YouTube', value: 'youtube' },
         ],
       },
       validation: (Rule) => Rule.required(),

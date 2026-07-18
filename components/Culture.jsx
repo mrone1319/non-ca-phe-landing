@@ -9,6 +9,12 @@ import { T } from '@/data/translations';
 const PLATFORM_LABEL = {
   instagram: { en: 'Instagram check-in', zh: 'Instagram 打卡' },
   xiaohongshu: { en: 'Xiaohongshu check-in', zh: '小红书打卡' },
+  facebook: { en: 'Facebook check-in', zh: 'Facebook 打卡' },
+  tiktok: { en: 'TikTok check-in', zh: 'TikTok 打卡' },
+  wechat: { en: 'WeChat check-in', zh: '微信打卡' },
+  google: { en: 'Google review', zh: 'Google 评价' },
+  twitter: { en: 'Twitter / X check-in', zh: 'Twitter / X 打卡' },
+  youtube: { en: 'YouTube check-in', zh: 'YouTube 打卡' },
 };
 
 const PLACEHOLDER_ALTS = [
